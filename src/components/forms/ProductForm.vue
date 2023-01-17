@@ -20,8 +20,7 @@ function onInvalidSubmit() {
 // Using yup to generate a validation schema
 // https://vee-validate.logaretm.com/v4/guide/validation#validation-schemas-with-yup
 const schema = Yup.object().shape({
-  name: Yup.string().required(),
-  email: Yup.string().email().required(),
+  productName: Yup.string().required(),
   password: Yup.string().min(6).required(),
   confirm_password: Yup.string()
     .required()
@@ -33,19 +32,15 @@ const schema = Yup.object().shape({
 
 <template>
   <div>
-    <Form
-      @submit="onSubmit"
-      :validation-schema="schema"
-      @invalid-submit="onInvalidSubmit"
-    >
-      <TextInput
-        name="product"
-        type="text"
-        label="Producto"
-        placeholder="Nuevo producto"
-        success-message="Se ve bien!"
-      />
-      <textarea id="description" maxlength="10"></textarea>  
+    <Form @submit="onSubmit" :validation-schema="schema" @invalid-submit="onInvalidSubmit">
+      <TextInput name="productName" id="newProductInput" type="text" label="Producto" placeholder="Nombre del producto"
+        success-message="Se ve bien!" />
+
+      <label for="productDescription" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripción</label>
+      <textarea id="productDescription" rows="4"
+        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Escribe la descripción aquí..."></textarea>
+
       <button class="submit-btn" type="submit">Submit</button>
     </Form>
   </div>
@@ -112,33 +107,43 @@ form {
   0% {
     transform: translate(1px, 1px);
   }
+
   10% {
     transform: translate(-1px, -2px);
   }
+
   20% {
     transform: translate(-3px, 0px);
   }
+
   30% {
     transform: translate(3px, 2px);
   }
+
   40% {
     transform: translate(1px, -1px);
   }
+
   50% {
     transform: translate(-1px, 2px);
   }
+
   60% {
     transform: translate(-3px, 1px);
   }
+
   70% {
     transform: translate(3px, 1px);
   }
+
   80% {
     transform: translate(-1px, -1px);
   }
+
   90% {
     transform: translate(1px, 2px);
   }
+
   100% {
     transform: translate(1px, -2px);
   }

@@ -1,5 +1,5 @@
 <script setup>
-import ProductForm from '../../components/forms/DataForm.vue';
+import ProductForm from '../../components/forms/ProductForm.vue';
 </script>
 
 <template>
