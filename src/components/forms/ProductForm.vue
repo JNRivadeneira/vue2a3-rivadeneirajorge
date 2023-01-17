@@ -3,6 +3,7 @@
 import { Form } from 'vee-validate';
 import * as Yup from 'yup';
 import TextInput from './TextInput.vue';
+import TextAreaInput from './TextAreaInput.vue';
 
 function onSubmit(values) {
   console.log('1/1 - values es:', values);
@@ -21,10 +22,7 @@ function onInvalidSubmit() {
 // https://vee-validate.logaretm.com/v4/guide/validation#validation-schemas-with-yup
 const schema = Yup.object().shape({
   productName: Yup.string().required(),
-  password: Yup.string().min(6).required(),
-  confirm_password: Yup.string()
-    .required()
-    .oneOf([Yup.ref('password')], 'Passwords do not match'),
+  productDescription: Yup.string().max(100).required(),
   title: Yup.string().required(),
   description: Yup.string().required().max(30),
 });
@@ -36,10 +34,7 @@ const schema = Yup.object().shape({
       <TextInput name="productName" id="newProductInput" type="text" label="Producto" placeholder="Nombre del producto"
         success-message="Se ve bien!" />
 
-      <label for="productDescription" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripción</label>
-      <textarea id="productDescription" rows="4"
-        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="Escribe la descripción aquí..."></textarea>
+      <TextAreaInput name="productDescription" id="productDescription" placeholder="Escribe la descripción del producto aquí..." label="Descripción"/>
 
       <button class="submit-btn" type="submit">Submit</button>
     </Form>
